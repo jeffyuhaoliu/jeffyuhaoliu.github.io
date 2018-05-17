@@ -3,12 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://jeffyuhaoliu.github.io/posts/elasticsearch-high-cpu-load/</loc>
+    <lastmod>2018-05-16T18:02:55-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://jeffyuhaoliu.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://jeffyuhaoliu.github.io/</loc>
+    <lastmod>2018-05-16T18:02:55-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://jeffyuhaoliu.github.io/posts/</loc>
+    <lastmod>2018-05-16T18:02:55-07:00</lastmod>
     <priority>0</priority>
   </url>
   

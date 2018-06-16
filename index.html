@@ -38,7 +38,7 @@
 
 
 
-<meta property="og:updated_time" content="2018-05-16T18:02:55-07:00"/>
+<meta property="og:updated_time" content="2018-06-15T23:21:09-07:00"/>
 
 
 
@@ -123,6 +123,56 @@
 
       <section class="w-100 mw8">
         
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/kubernetes-scheduling-fail-insufficient-cpu-memory/" class="color-inherit dim link">
+            Kubernetes - Scheduling Fail Insufficient CPU and/or Memory
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          Encountered this weird issue where after recovering from a serious cluster failure event. The symptoms were that certain Pending pods were stuck in that state with errors stating both &ldquo;Insufficient CPU&rdquo; and &ldquo;Insufficient Memory&rdquo;. In my case, these pods were tolerating specific tainted nodes and those nodes had more than enough CPU and memory to schedule the intended pod.
+Turns out the problem was resolved via a restart of the Kubernetes API Servers.
+        </div>
+          <a href="/posts/kubernetes-scheduling-fail-insufficient-cpu-memory/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/kubernetes-bad-nodes-scaling-up/" class="color-inherit dim link">
+            Kubernetes - Bad Nodes Scaling Up
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          Encountered a very serious Kubernetes issue that almost led to a full cluster outage. The symptoms were the following:
+ Kube API Server sometimes become unresponsive and from time to time returned the error message: Error from server: client: etcd cluster is unavailable or misconfigured; error #0: unexpected EOF Many pods were stuck on Pending or Terminating state etcd CPU and network traffic spiked up dramatically from normal levels  The diagnosis of the problem was that we had to increase our cluster capacity by 50% for a large batch job and new nodes (they had a minor version update) created in the cluster seems to have a yet to be unidentified issue that was causing kubelet on these nodes to throw lots and lots of errors.
+        </div>
+          <a href="/posts/kubernetes-bad-nodes-scaling-up/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
         
           <div class="relative w-100 mb4">
             

@@ -6,10 +6,30 @@
     <description>Recent content on Mundane Notes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 16 May 2018 18:02:55 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 15 Jun 2018 23:21:09 -0700</lastBuildDate>
     
 	<atom:link href="https://jeffyuhaoliu.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kubernetes - Scheduling Fail Insufficient CPU and/or Memory</title>
+      <link>https://jeffyuhaoliu.github.io/posts/kubernetes-scheduling-fail-insufficient-cpu-memory/</link>
+      <pubDate>Fri, 15 Jun 2018 23:21:09 -0700</pubDate>
+      
+      <guid>https://jeffyuhaoliu.github.io/posts/kubernetes-scheduling-fail-insufficient-cpu-memory/</guid>
+      <description>Encountered this weird issue where after recovering from a serious cluster failure event. The symptoms were that certain Pending pods were stuck in that state with errors stating both &amp;ldquo;Insufficient CPU&amp;rdquo; and &amp;ldquo;Insufficient Memory&amp;rdquo;. In my case, these pods were tolerating specific tainted nodes and those nodes had more than enough CPU and memory to schedule the intended pod.
+Turns out the problem was resolved via a restart of the Kubernetes API Servers.</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes - Bad Nodes Scaling Up</title>
+      <link>https://jeffyuhaoliu.github.io/posts/kubernetes-bad-nodes-scaling-up/</link>
+      <pubDate>Fri, 15 Jun 2018 22:46:36 -0700</pubDate>
+      
+      <guid>https://jeffyuhaoliu.github.io/posts/kubernetes-bad-nodes-scaling-up/</guid>
+      <description>Encountered a very serious Kubernetes issue that almost led to a full cluster outage. The symptoms were the following:
+ Kube API Server sometimes become unresponsive and from time to time returned the error message: Error from server: client: etcd cluster is unavailable or misconfigured; error #0: unexpected EOF Many pods were stuck on Pending or Terminating state etcd CPU and network traffic spiked up dramatically from normal levels  The diagnosis of the problem was that we had to increase our cluster capacity by 50% for a large batch job and new nodes (they had a minor version update) created in the cluster seems to have a yet to be unidentified issue that was causing kubelet on these nodes to throw lots and lots of errors.</description>
+    </item>
     
     <item>
       <title>elasticsearch - high CPU and load</title>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Mundane Notes  | Kubernetes - Bad Nodes Scaling Up</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.40.3" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+    
+      <link href="https://jeffyuhaoliu.github.io/dist/css/app.ab4b67a3ea25990fa8279f3b7ef08b61.css" rel="stylesheet">
+    
+
+    
+
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Kubernetes - Bad Nodes Scaling Up" />
+<meta property="og:description" content="Encountered a very serious Kubernetes issue that almost led to a full cluster outage. The symptoms were the following:
+ Kube API Server sometimes become unresponsive and from time to time returned the error message: Error from server: client: etcd cluster is unavailable or misconfigured; error #0: unexpected EOF Many pods were stuck on Pending or Terminating state etcd CPU and network traffic spiked up dramatically from normal levels  The diagnosis of the problem was that we had to increase our cluster capacity by 50% for a large batch job and new nodes (they had a minor version update) created in the cluster seems to have a yet to be unidentified issue that was causing kubelet on these nodes to throw lots and lots of errors." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jeffyuhaoliu.github.io/posts/kubernetes-bad-nodes-scaling-up/" />
+
+
+
+<meta property="article:published_time" content="2018-06-15T22:46:36-07:00"/>
+
+<meta property="article:modified_time" content="2018-06-15T22:46:36-07:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Kubernetes - Bad Nodes Scaling Up">
+<meta itemprop="description" content="Encountered a very serious Kubernetes issue that almost led to a full cluster outage. The symptoms were the following:
+ Kube API Server sometimes become unresponsive and from time to time returned the error message: Error from server: client: etcd cluster is unavailable or misconfigured; error #0: unexpected EOF Many pods were stuck on Pending or Terminating state etcd CPU and network traffic spiked up dramatically from normal levels  The diagnosis of the problem was that we had to increase our cluster capacity by 50% for a large batch job and new nodes (they had a minor version update) created in the cluster seems to have a yet to be unidentified issue that was causing kubelet on these nodes to throw lots and lots of errors.">
+
+
+<meta itemprop="datePublished" content="2018-06-15T22:46:36-07:00" />
+<meta itemprop="dateModified" content="2018-06-15T22:46:36-07:00" />
+<meta itemprop="wordCount" content="189">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kubernetes - Bad Nodes Scaling Up"/>
+<meta name="twitter:description" content="Encountered a very serious Kubernetes issue that almost led to a full cluster outage. The symptoms were the following:
+ Kube API Server sometimes become unresponsive and from time to time returned the error message: Error from server: client: etcd cluster is unavailable or misconfigured; error #0: unexpected EOF Many pods were stuck on Pending or Terminating state etcd CPU and network traffic spiked up dramatically from normal levels  The diagnosis of the problem was that we had to increase our cluster capacity by 50% for a large batch job and new nodes (they had a minor version update) created in the cluster seems to have a yet to be unidentified issue that was causing kubelet on these nodes to throw lots and lots of errors."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://jeffyuhaoliu.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      Mundane Notes
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  <article class="flex-l flex-wrap justify-between mw8 center">
+
+    <header class="mt4 w-100">
+      <p class="f6 b helvetica tracked">
+          
+        POSTS
+      </p>
+      <h1 class="f1 athelas mb1">Kubernetes - Bad Nodes Scaling Up</h1>
+      
+      <time class="f6 mv4 dib tracked" datetime="2018-06-15T22:46:36-07:00">June 15, 2018</time>
+    </header>
+
+    <main class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>Encountered a very serious Kubernetes issue that almost led to a full cluster outage. The symptoms were the following:</p>
+
+<ul>
+<li>Kube API Server sometimes become unresponsive and from time to time returned the error message: <code>Error from server: client: etcd cluster is unavailable or misconfigured; error #0: unexpected EOF</code></li>
+<li>Many pods were stuck on <strong>Pending</strong> or <strong>Terminating</strong> state</li>
+<li>etcd CPU and network traffic spiked up dramatically from normal levels</li>
+</ul>
+
+<p>The diagnosis of the problem was that we had to increase our cluster capacity by 50% for a large batch job and new nodes (they had a minor version update) created in the cluster seems to have a yet to be unidentified issue that was causing kubelet on these nodes to throw lots and lots of errors. I suspect that these errors flooded the API Server with messages and requests causing a cascade of failures on nodes that previously worked.</p>
+
+<p>Unfortunately, the solution to the problem was to terminate the new nodes and eventually the cluster recovered itself (mostly&hellip;). For more information about the next issue I encounted trying to full recover pods that were stuck on <strong>Pending</strong>, please see <a href="/posts/kubernetes-scheduling-fail-insufficient-cpu-memory/">here</a>.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6">
+        
+      </div>
+    </main>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://jeffyuhaoliu.github.io/" >
+    &copy; 2018 Mundane Notes
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    
+
+  <script src="https://jeffyuhaoliu.github.io/dist/js/app.3fc0f988d21662902933.js"></script>
+
+
+  </body>
+</html>
